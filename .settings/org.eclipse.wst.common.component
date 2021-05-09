@@ -2,6 +2,7 @@
     <wb-module deploy-name="SSMIEET">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/conf"/>
         <property name="java-output-path" value="/SSMIEET/build/classes"/>
         <property name="context-root" value="SSMIEET"/>
     </wb-module>
