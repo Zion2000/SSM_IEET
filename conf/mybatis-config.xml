@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+ 	   "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+
+<!-- 二级缓存 -->
+<settings>
+		<setting name="cacheEnabled" value="ture"/>
+</settings>
+<plugins>
+<plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+</plugins>
+
+	
+	<!-- 配置映射文件的位置  Spring.xml中配置了
+	<mappers>
+		<package name="com.wzw.ssm.mapper"/>
+	</mappers> -->
+</configuration>

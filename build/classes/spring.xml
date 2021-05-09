@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+
+
+
+
+	<!-- 引入数据库连接properties文件 -->
+	<context:property-placeholder
+		location="classpath:Jdbc.properties" />
+
+
+	<!-- 注册数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}"/>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"/>
+		<property name="user" value="${jdbc.user}"/>
+		<property name="password" value="${jdbc.password}"/>
+		
+	</bean>
+
+	<!-- 注册事物管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 事物注解驱动配置 -->
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
+
+	<!-- 配置MyBatis-Spring的SessionFactory -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- mybatis核心配置文件的路径 -->
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml" />
+		<!-- 数据源 -->
+		<property name="dataSource" ref="dataSource"/>
+		<!-- 类型别名 -->
+		<property name="typeAliasesPackage" value="com.ieet.pojo" />
+		<!-- 映射文件的路径 -->
+		<property name="mapperLocations"
+			value="classpath:com/wzw/ssm/mapper/*.xml" />
+	</bean>
+
+
+	<!-- 配置MyBatis扫描包 -->
+	<!-- 自动装配？ -->
+	<!-- 配置映射接口类 -->
+	<!-- 将所有的接口生成动态代理实现类，并由spring容器管理 -->
+	<bean id="mapperScannerConfigurer"
+		class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!--扫描映射接口 -->
+		<property name="basePackage" value="com.ieet.dao" />
+	</bean>
+
+
+	<!-- 配置扫描的注解类 -->
+	<context:component-scan base-package="com.ieet">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+
+</beans>
