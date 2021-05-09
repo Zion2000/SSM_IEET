@@ -51,7 +51,7 @@
 		<property name="typeAliasesPackage" value="com.ieet.pojo" />
 		<!-- 映射文件的路径 -->
 		<property name="mapperLocations"
-			value="classpath:com/wzw/ssm/mapper/*.xml" />
+			value="classpath:com/ieet/mapper/*.xml" />
 	</bean>
 
 

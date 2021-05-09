@@ -22,7 +22,7 @@
 	<mvc:default-servlet-handler />
 
 	<!-- 5. 异常处理解析器配置 -->
-	 <bean id="springExceptionResolver" class="com.ssm.resolver.GlobalExceptionHandler" 
+	 <bean id="springExceptionResolver" class="com.ieet.resolver.GlobalExceptionHandler" 
 		/> 
 
 	<!-- 配置登录拦截器 -->
