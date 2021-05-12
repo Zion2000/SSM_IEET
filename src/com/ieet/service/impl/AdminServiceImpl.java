@@ -25,16 +25,73 @@ public class AdminServiceImpl implements AdminService {
 			return list;
 	}
 
+	
+	@Override
+	public List<Personnel> getAllTeam() {
+		List<Personnel> list = adminDao.getAllTeams();		
+		return list;
+	}
+	
 	@Override
 	public int save(Personnel personnel) {
-		System.out.println("test1: "+personnel.getName()+personnel.getTeam()+personnel.getType()+personnel.getIdname()+personnel.getPword());
 		int insert = adminDao.insert(personnel);
-		System.out.println("test2: ");		
 			return insert;
-		
-		
-	
 	}
+
+	@Override
+	public Personnel getpersonbyid(int id) {		
+		 Personnel p = adminDao.getbyid(id);	
+		return p;
+	}
+
+	@Override
+	public void update(Personnel personnel) {
+		adminDao.update(personnel);		
+	}
+
+	@Override
+	public void delete(int id) {
+		adminDao.delete(id);		
+	}
+
+	@Override
+	public void deletemore(String pids) {
+		
+		adminDao.deletemore(pids);
+	}
+
+	@Override
+	public List<Personnel> selectbytype(String type) {
+		List<Personnel> list = adminDao.selectbyType(type);
+		return list;
+	}
+
+	@Override
+	public List<Personnel> selectbykeywords(Personnel keywords) {
+		List<Personnel> list = adminDao.selectbykeywords(keywords);	
+		
+		return list;
+	}
+
+	@Override
+	public List selectlotbyid(String pids) {
+		List<Personnel> list = adminDao.selectlotbyid(pids);
+		return list;
+	}
+	
+	@Override
+	public void MoreUpdate(List<Personnel> list) {
+		adminDao.moreUpdate(list);
+		
+	}
+
+
+
+
+
+	
+
+
 
 	
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ieet.dao.AdminDao">
+
+	<!-- 二级缓存 -->
+	<cache />
+
+	
+	<select id="selectbykeywords" resultType="com.ieet.pojo.Personnel">
+		select * from personnel
+		<trim prefix="where" 
+			  suffix=""
+		      prefixOverrides=""
+			  suffixOverrides="">
+			 <choose>		 
+				 <when test="Pid != 0 ">
+				  Pid = #{Pid} 
+				 </when> 
+				 <when test="name != null  ">			 
+				  name like '%${name}%' 				  
+				 </when>
+				 <when test="team != null  ">			 
+				  team like '%${team}%' 				  
+				 </when>
+				 <otherwise></otherwise>
+			 </choose> 	
+		</trim>
+	</select>
+
+	<update id="moreUpdate" >
+		<foreach collection="list" item="p" separator=";">
+		Update personnel SET team=#{p.team} WHERE Pid=#{p.Pid}
+		</foreach>
+	</update>
+
+
+</mapper>

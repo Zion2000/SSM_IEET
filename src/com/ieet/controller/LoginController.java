@@ -27,7 +27,7 @@ public class LoginController {
 			//login ok
 			session.setAttribute("AdminUser", amin);
 			System.out.println("AdminUser登陆成功");
-			return "forward:/admin";
+			return "forward:/admin/1";
 		}else {
 			System.out.println("AdminUser登陆失败");
 		}

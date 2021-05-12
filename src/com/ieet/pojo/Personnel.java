@@ -61,6 +61,11 @@ public class Personnel {
 	public void setPword(String pword) {
 		this.pword = pword;
 	}
+	@Override
+	public String toString() {
+		return "Personnel [Pid=" + Pid + ", name=" + name + ", type=" + type + ", team=" + team + ", idname=" + idname
+				+ ", pword=" + pword + "]";
+	}
 	
 	
 	
