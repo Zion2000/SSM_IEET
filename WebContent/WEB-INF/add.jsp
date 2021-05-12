@@ -9,7 +9,7 @@
 </head>
 <body>
 		<% pageContext.setAttribute("ctp", request.getContextPath()); %>
-		<form:form action="${ctp}/addPost" method="post" modelAttribute="Personnel">
+		<form:form action="${ctp}/addPost?type=${type}" method="post" modelAttribute="Personnel">
 		
 			姓名：<form:input path="name"/><br/>		
 			type：<br/>

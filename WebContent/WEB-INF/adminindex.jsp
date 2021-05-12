@@ -71,15 +71,30 @@
 					<form action="${ctp}/SearchAdmin" method="post">
 					<input class="inputt" placeholder="key worlds" value="${keywords }" name="keywords" id="" type="text" />
 					<input class="inputg" placeholder="" name="sub" value="查询" id="" type="submit" />
-	
 					</form>
+					
 				</div>
 				
 				
 				<!-- 从这里开始插入代码！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
 		
 			
+				<div class="list-page">
+				<span><a href="${ctp}/deleteMore" id="deleteMore">批量删除</a>	</span>	
+						&nbsp;&nbsp;&nbsp;
+				<span>
 				
+					<select id="aaa">
+						<c:forEach items="${allTeam }" var="a">
+							<option >${a.team}</option>
+						</c:forEach>
+					</select> 
+					<a href="${ctp}/updateMore/" id="updateMore">批量修改team</a>
+				</span>	
+						&nbsp;&nbsp;&nbsp;
+					<span><a href="${ctp}/toaddperson?type=${map}&keyw=${keyw}">添加人员</a></span>	</br>
+					
+				</div>
 				
 					<div class="tasks-wrapper">
 			<form id="moreoptionform" method="post" >
@@ -108,9 +123,9 @@
 							<td>${p.name}</td>
 							<td>${p.type}</td>
 							<td>${p.team}</td>
-							<td><a href="${ctp}/personEidt/${p.pid}">edit</a></td>
+							<td><a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}">edit</a></td>
 							<td>
-						  <a href="${ctp}/personEidt/${p.pid}" class="deleteBtn">delete 
+						  <a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}" class="deleteBtn">delete 
 							
 							</td>
 					 	 </tr>
@@ -119,23 +134,8 @@
 													
 				</form>							
 					
-					
-				<div class="list-page">
-				<span><a href="${ctp}/deleteMore" id="deleteMore">批量删除</a>	</span>	
-						&nbsp;&nbsp;&nbsp;
-				<span>
+				${page }	
 				
-					<select id="aaa">
-						<c:forEach items="${allTeam }" var="a">
-							<option >${a.team } </option>
-						</c:forEach>
-					</select> 
-					<a href="${ctp}/updateMore/" id="updateMore">批量修改team</a>
-				</span>	
-						&nbsp;&nbsp;&nbsp;
-					<span><a href="${ctp}/toaddperson">添加人员</a></span>	</br>
-					${page }
-				</div>
 				
 				<form id="deleteform" action="${ctp}/personEidt/ "  method="post" >
 									<input type="hidden" name="_method" value="delete"/>									
@@ -151,8 +151,6 @@
 					$(".deleteBtn").click(function(){
 						console.log("?");
 						$("#deleteform").attr("action",$(this).attr("href"));
-						console.log($(this));
-						console.log(typeof($(this)));
 						$("#deleteform").submit();
 						return false;
 						});
@@ -160,14 +158,15 @@
 				  
 				 $(function(){
 						$("#selectAll").click(function(){
+					 
 					$("[name='check']").prop("checked",$(this).prop("checked"));
 						});
 					});
 				 $(function(){
 						$("#deleteMore").click(function(){
-							console.log("?");
+							$('#deleteMore').attr('href','${ctp}/deleteMore/?type=${map}&keyw=${keyw}'); 
 							$("#moreoptionform").attr("action",$(this).attr("href")).submit();							
-						
+							
 							return false;
 							});
 						}); 
@@ -175,10 +174,11 @@
 						
 						
 						$(function(){
-							$("#updateMore").click(function(){				
-								var value =$("#aaa option:selected").text();  
-							
-								$('#updateMore').attr('href','${ctp}/updateMore/'+value.toString()+''); 
+							$("#updateMore").click(function(){		
+								//$('input[type=checkbox]').prop('checked')
+								
+								var value =$("#aaa option:selected").text();  						
+										$('#updateMore').attr('href','${ctp}/updateMore/'+value.toString()+'?type=${map}&keyw=${keyw}'); 
 								$("#moreoptionform").attr("action",$(this).attr("href")).submit();
 								return false;
 								});

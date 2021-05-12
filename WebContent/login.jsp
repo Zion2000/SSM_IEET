@@ -9,8 +9,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <title>login</title>
 
- <link media="all" type="text/css" rel="stylesheet" href="/WEB-INF/css/bootstrap-3.1.1.min.css">
- <link media="all"  rel="stylesheet" type="text/css"  href="/WEB-INF/css/login.css" />
+<link href="/css/login.css" rel="stylesheet" type="text/css"/>
 
 </head>
 <body style="text-align: center;">

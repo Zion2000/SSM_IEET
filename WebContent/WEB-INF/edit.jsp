@@ -8,11 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-			
+			<%-- /${Personnel.pid }--%> 
 			<% pageContext.setAttribute("ctp", request.getContextPath()); %>
-		<form:form action="${ctp}/personUpdate/${Personnel.pid }" method="post" modelAttribute="Personnel">
+		<form:form action="${ctp}/personUpdate" method="post" modelAttribute="Personnel">
 		<input type="hidden" name="_method" value="put"/>
 		<input type="hidden" name="id" value="${Personnel.pid }"/>
+		<input type="hidden" name="typesss" value="${typesss }"/>
+		<input type="hidden" name="keyw" value="${keyw }"/>
 			姓名：<form:input path="name"/><br/>		
 			type：<br/>
 				教师  ：<form:radiobutton path="type" value="教师"/>&nbsp&nbsp
