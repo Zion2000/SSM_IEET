@@ -3,8 +3,14 @@ body {
 	padding: 0;
 	font-family: monospace;
 	
+
+	background:  #c0c0c0;
+	background-size: 300%;
 	animation: bganimation 5s infinite;
 }
+
+
+
 
 
 .form-horizontal {

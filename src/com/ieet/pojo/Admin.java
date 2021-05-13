@@ -1,16 +1,20 @@
 package com.ieet.pojo;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Admin {
 
 	
 	private Integer id;
 	private String idname;
 	private String pword;
-	
-	
+
+
 	
 	public Admin() {
 		super();
+
 	}
 
 	public Admin(Integer id, String idname, String pword) {
@@ -18,6 +22,7 @@ public class Admin {
 		this.id = id;
 		this.idname = idname;
 		this.pword = pword;
+		
 	}
 
 	public Integer getId() {
