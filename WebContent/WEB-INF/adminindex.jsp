@@ -37,7 +37,6 @@
 			</div>
 		</div>
 		<div class="page-content">
-		<label style="position: absolute; left: 95%;"><a href="${ctp}/exit">退出</a></label>
 			<div class="header">Today</div>
 			<div class="content-categories">
 				

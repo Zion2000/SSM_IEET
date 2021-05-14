@@ -353,7 +353,7 @@
     position: relative;
 
     font-size: 1.00em;
-   /*  padding: 0px -10px 25px 20px; */
+    padding: 0px 25px 25px 20px;
     margin: 10px auto;
  
     z-index: 9;

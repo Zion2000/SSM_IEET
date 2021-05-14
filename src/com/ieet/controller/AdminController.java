@@ -421,12 +421,4 @@ public class AdminController {
 		map.put("keywords",key);
 		map.put("keyw", key);
 	}
-	
-	@RequestMapping(value="/exit")
-	public String exit() {
-		return "../login";
-		
-	}
-	
-	
 }
