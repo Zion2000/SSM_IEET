@@ -37,4 +37,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 
+	<!-- 批量添加 -->		<!-- keyProperty="sid  返回主键给sid-->
+	<insert id="insertlot" useGeneratedKeys="true" keyProperty="pid">
+			insert into personnel values 
+		<foreach collection="list" item="p" separator=",">
+		(#{p.name},#{p.type},#{p.team},#{p.idname},#{p.pword})
+		</foreach>
+	</insert>
+
+
 </mapper>

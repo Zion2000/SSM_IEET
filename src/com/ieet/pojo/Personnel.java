@@ -1,12 +1,32 @@
 package com.ieet.pojo;
 
-public class Personnel {
+import com.alibaba.excel.annotation.ExcelProperty;
 
+import lombok.Data;
+
+@Data
+public class Personnel {
+	
+	@ExcelProperty(value = "id号", index = 0)
 	private int Pid;
+	
+	@ExcelProperty(value = "名字", index = 1)
 	private String name;
+	
+	
+	@ExcelProperty(value = "类型", index = 2)
 	private String type;
+	
+	
+	@ExcelProperty(value = "小组", index = 3)
 	private String team;
-	private String idname;
+	
+	
+	@ExcelProperty(value = "账号", index = 4)
+	private String idname;	
+	
+	
+	@ExcelProperty(value = "密码", index = 5)
 	private String pword;
 	
 	
@@ -16,14 +36,15 @@ public class Personnel {
 	public Personnel() {
 		super();
 	}
-	public Personnel(int pid, String name, String type, String team, String idname, String pword) {
+	public Personnel(int pid,String name, String type, String team, String idname, String pword) {
 		super();
-		Pid = pid;
+		this.Pid = pid;
 		this.name = name;
 		this.type = type;
 		this.team = team;
 		this.idname = idname;
 		this.pword = pword;
+	
 	}
 	public int getPid() {
 		return Pid;

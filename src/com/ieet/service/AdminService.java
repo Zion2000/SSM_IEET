@@ -2,6 +2,8 @@ package com.ieet.service;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+
 import com.ieet.pojo.Admin;
 import com.ieet.pojo.Personnel;
 
@@ -30,5 +32,6 @@ public interface AdminService {
 
 	public void MoreUpdate(List<Personnel> ls);
 
+	public List readExcel(List<Personnel> list);
 	
 }

@@ -15,7 +15,7 @@ import com.ieet.pojo.Personnel;
 
 public interface AdminDao {
 
-	@Select("select * from personnel ")
+	@Select("select Pid,name,type,team,idname,pword from personnel ")
 	@ResultType(Personnel.class)
 	public List<Personnel> getAllpersons() ;
 	
@@ -51,6 +51,8 @@ public interface AdminDao {
 	
 		
 	public void moreUpdate(List<Personnel> list);
+
+	public void insertlot(List<Personnel> list);
 
 	
 	

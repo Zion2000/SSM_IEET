@@ -25,6 +25,10 @@
 	 <bean id="springExceptionResolver" class="com.ieet.resolver.GlobalExceptionHandler" 
 		/> 
 
+	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+	id="multipartResolver"
+	></bean>
+
 	<!-- 配置登录拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>

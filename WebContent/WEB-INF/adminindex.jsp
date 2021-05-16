@@ -37,7 +37,9 @@
 			</div>
 		</div>
 		<div class="page-content">
-			<div class="header">Today</div>
+			<div class="header">Today
+			<a href="${ctp}/exitadmin" style="position: absolute;left: 90%;">退出</a>
+			</div>
 			<div class="content-categories">
 				
 				<div class="label-wrapper">
@@ -92,8 +94,10 @@
 					<a href="${ctp}/updateMore/" id="updateMore">批量修改team</a>
 				</span>	
 						&nbsp;&nbsp;&nbsp;
-					<span><a href="${ctp}/toaddperson?type=${map}&keyw=${keyw}">添加人员</a></span>	</br>
-					
+					<span><a href="${ctp}/toaddperson?type=${map}&keyw=${keyw}">添加人员</a></span>&nbsp;&nbsp;&nbsp;	
+					<span><a href="${ctp}/exportExcel?type=${map}&keyw=${keyw}" >导出为Excel</a></span>&nbsp;&nbsp;&nbsp;
+					<span><a href="${ctp}/exportExcelModel" >导出Excel模板</a></span>&nbsp;&nbsp;&nbsp;
+					<span> <a href="${ctp}/importExcelpage" >导入Excel</a></span>
 				</div>
 				
 					<div class="tasks-wrapper">
@@ -111,6 +115,8 @@
 							<td>name</td>
 							<td>type</td>
 							<td>team</td>
+							<td>idname</td>
+							<td>pasword</td>
 							<td>EDIT</td>
 							<td>DELETE</td>
 						</tr>	
@@ -123,6 +129,8 @@
 							<td>${p.name}</td>
 							<td>${p.type}</td>
 							<td>${p.team}</td>
+							<td>${p.idname}</td>
+							<td>${p.pword}</td>
 							<td><a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}">edit</a></td>
 							<td>
 						  <a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}" class="deleteBtn">delete 

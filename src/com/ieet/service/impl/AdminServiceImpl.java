@@ -1,5 +1,6 @@
 package com.ieet.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -86,18 +87,65 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 
-
-
+	@Override
+	public List readExcel(List<Personnel> list) {
+		List<Personnel> list2 = adminDao.getAllpersons();		
+		List<Personnel> list_false = new ArrayList();
+		
+		
+			for (int i = 0; i < list.size(); i++) {			
+				System.out.println("list.get("+i+")-"+list.get(i));
+				
+				if (list.get(i).getName()==null || list.get(i).getIdname()==null || list.get(i).getPword()==null ) {
+					list_false.add(list.get(i));
+					continue;
+				}
+				if (list.get(i).getType()!="教师" && list.get(i).getType()!="审核人员") {
+					list_false.add(list.get(i));
+					continue;
+				}
+					for (int j = 0; j < list2.size(); j++) {			
+						System.out.println("list2.get("+j+")-"+list2.get(j));
+						if(list2.get(j).getIdname().equals(list.get(i).getIdname()))
+						{
+							System.out.println("ok");					
+							list_false.add(list.get(i));//idname重复失败的组									
+						}
+					}
+		}
+		
 
 	
+		
+		for (Personnel personnel : list_false) {
+			System.out.println("list_false: "+personnel);
+		}
 
-
-
-	
-
-
-	
-	
-
-
+		if (list_false.isEmpty()) {
+		System.out.println("OK！id没有重复");
+			adminDao.insertlot(list);
+			return null;//
+		}else {
+			System.out.println("NO！id有重复");
+			return list_false;
+		}
+		
+	}
 }
+
+
+
+
+
+	
+
+
+
+	
+
+
+	
+	
+
+
+
