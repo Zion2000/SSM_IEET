@@ -23,7 +23,7 @@ public class PersonnelListener extends AnalysisEventListener<Personnel> {
     /**
      * 每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收
      */
-    private static final int BATCH_COUNT = 5;
+    private static final int BATCH_COUNT = 30;
     List<Personnel> list = new ArrayList<Personnel>();
     public Map<String,Object> map = new HashMap<>();
     
@@ -67,6 +67,7 @@ public class PersonnelListener extends AnalysisEventListener<Personnel> {
        
         map.put("listwzw", listwzw);
         System.out.println("存储数据库成功！");
-       
+      //结束了再清理一次
+        list.clear();
     }
 }

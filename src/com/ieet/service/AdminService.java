@@ -33,5 +33,8 @@ public interface AdminService {
 	public void MoreUpdate(List<Personnel> ls);
 
 	public List readExcel(List<Personnel> list);
+
+	public List<Personnel> overwrite(String[] listwzw);
+
 	
 }

@@ -91,19 +91,16 @@ public class AdminServiceImpl implements AdminService {
 	public List readExcel(List<Personnel> list) {
 		List<Personnel> list2 = adminDao.getAllpersons();		
 		List<Personnel> list_false = new ArrayList();
-		
-		
+		list_false.clear();
 			for (int i = 0; i < list.size(); i++) {			
 				System.out.println("list.get("+i+")-"+list.get(i));
 				
 				if (list.get(i).getName()==null || list.get(i).getIdname()==null || list.get(i).getPword()==null ) {
+					System.out.println("?");
 					list_false.add(list.get(i));
 					continue;
 				}
-				if (list.get(i).getType()!="教师" && list.get(i).getType()!="审核人员") {
-					list_false.add(list.get(i));
-					continue;
-				}
+				
 					for (int j = 0; j < list2.size(); j++) {			
 						System.out.println("list2.get("+j+")-"+list2.get(j));
 						if(list2.get(j).getIdname().equals(list.get(i).getIdname()))
@@ -113,11 +110,8 @@ public class AdminServiceImpl implements AdminService {
 						}
 					}
 		}
-		
-
-	
-		
-		for (Personnel personnel : list_false) {
+			
+			for (Personnel personnel : list_false) {
 			System.out.println("list_false: "+personnel);
 		}
 
@@ -130,6 +124,14 @@ public class AdminServiceImpl implements AdminService {
 			return list_false;
 		}
 		
+	}
+
+
+	@Override
+	public List<Personnel> overwrite(String[] listwzw) {
+		System.out.println("listwzw-listwzw:"+listwzw);
+		adminDao.overwriteUpdate(listwzw);
+		return null;
 	}
 }
 

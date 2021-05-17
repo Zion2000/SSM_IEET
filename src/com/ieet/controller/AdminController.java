@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletOutputStream;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelReader;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.github.pagehelper.PageHelper;
@@ -39,6 +42,7 @@ import com.ieet.util.PersonnelListener;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.read.builder.ExcelReaderBuilder;
+import com.alibaba.excel.read.metadata.ReadSheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
 
 @Controller
@@ -321,6 +325,7 @@ public class AdminController {
 						p.getPword());
 				ls.add(personnel);
 			}
+			System.out.println("ls- "+ls);
 			adminService.MoreUpdate(ls);
 		}
 		/*
@@ -475,24 +480,50 @@ public class AdminController {
 	
 	@Autowired
 	PersonnelListener personnelListener;
-		
+	
 	@RequestMapping(value="/read")
     public String readExcel(
     		MultipartFile uploadFile
     		, Map<String, Object> map,
     		Model model
-    		) {    
-		try {	     	
+    		) {
+		
+	
+	        ExcelReader excelReader = null;
+	        try {
+	            excelReader = EasyExcel.read(uploadFile.getInputStream(), Personnel.class, personnelListener).build();
+	            ReadSheet readSheet = EasyExcel.readSheet(0).build();
+	            excelReader.read(readSheet);
+	        } catch (Exception e ) {						
+				map.put("importExcelMsg", "未选择正确的Excel文件");	
+				return "importExcel";		
+			}finally {
+	            if (excelReader != null) {
+	                // 这里千万别忘记关闭，读的时候会创建临时文件，到时磁盘会崩的
+	                excelReader.finish();
+	                try {
+						uploadFile.getInputStream().close();
+					} catch (IOException e) {						
+						e.printStackTrace();
+					}
+	            }
+	            }
+		
+		
+		/*try {	     	
 			EasyExcel.read(uploadFile.getInputStream(), Personnel.class, personnelListener).sheet().doRead();		  		 
 		}catch (Exception e ) {						
 			map.put("importExcelMsg", "未选择正确的Excel文件");	
 			return "importExcel";		
-		}
+		}*/
 		 Map<String, Object> map2= personnelListener.map;
 		 List<Personnel>  listwzw = (List) map2.get("listwzw");
 		 System.out.println(listwzw);	 
 		 if (listwzw!=null) {
-			model.addAttribute("listwzw", listwzw); 	
+			 
+
+			model.addAttribute("listwzw", listwzw);
+			map.put("uploadFilewzw", uploadFile); 
 			model.addAttribute("xxx", "有重复idname 或者  不符合条件的列‘如下’---导入失败，请修改"); 			 
 			 return "importExcel";
 		}
@@ -506,7 +537,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/exitadmin")
 	public String exitt() {
-		return "login";
+		return "../login";
 	}
 	@RequestMapping(value = "/exitimportE")
 	public String exitimportE() {
@@ -514,6 +545,16 @@ public class AdminController {
 	}
 	
 	
-	
+	@RequestMapping(value = "/OverWarite")
+	public String OverWarite(
+			String[] listwzw,Personnel personnel
+			) {	
+		
+			System.out.println(listwzw);
+		
+			adminService.overwrite(listwzw);
+			
+		return "importExcel";
+	}
 	
 }

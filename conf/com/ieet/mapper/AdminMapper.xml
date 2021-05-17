@@ -41,9 +41,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertlot" useGeneratedKeys="true" keyProperty="pid">
 			insert into personnel values 
 		<foreach collection="list" item="p" separator=",">
-		(#{p.name},#{p.type},#{p.team},#{p.idname},#{p.pword})
+		(0,#{p.name},#{p.type},#{p.team},#{p.idname},#{p.pword})
 		</foreach>
 	</insert>
 
-
+	<!-- 批量修改 -->		<!-- keyProperty="sid  返回主键给sid-->
+<update id="overwriteUpdate" parameterType="com.ieet.pojo.Personnel">			
+		<foreach collection="array" item="p" separator=";" >
+			UPDATE personnel  
+				<trim prefix="set" suffix="" prefixOverrides=""
+					suffixOverrides=",">			
+					<!-- <if test="name != null  "> -->
+						 name = #{p.name} , 
+					<!-- </if>	 -->
+					<!-- <if test=" type='教师' or type= '审核人员' ">
+						 type = #{p.type} , 
+					</if>
+					<if test=" team !=null ">
+						 team = #{p.team} , 
+					</if>
+					<if test=" pword !=null ">
+						 pword = #{p.pword} , 
+					</if>	 -->	
+				</trim>
+			 WHERE idname = #{p.idname}
+		</foreach>
+</update>
+	
 </mapper>

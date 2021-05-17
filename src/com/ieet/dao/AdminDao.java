@@ -54,6 +54,10 @@ public interface AdminDao {
 
 	public void insertlot(List<Personnel> list);
 
+
+
+	public List<Personnel> overwriteUpdate(String[] listwzw);
+
 	
 	
 	

@@ -155,7 +155,7 @@ public class Excel {
 		
 	}
 	
-	 @Test
+/*	 @Test
 	    public void simpleWritewzw() {
 	        // 写法1
 			String fileName = PATH + "EasyTest.xlsx";
@@ -176,5 +176,5 @@ public class Excel {
 	            list.add(data);
 	        }
 	        return list;
-	    }
+	    }*/
 }

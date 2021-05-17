@@ -38,11 +38,12 @@
 		</div>
 		<div class="page-content">
 			<div class="header">Today</div>
+			<a href="${ctp}/exitimportE" style="position: absolute;left: 90%;">退出</a>
 			<div class="" style="margin:0 auto">
-				<form action="${pageContext.request.contextPath }/read" method="post" enctype="multipart/form-data">
-				   <h2>文件上传</h2><a href="${ctp}/exitimportE" style="position: absolute;left: 90%;">退出</a>
-				                文件:<input type="file" name="uploadFile"/><br/><br/>
-				      <input type="submit" value="上传"/>
+			 <h2>文件上传</h2>
+				<form action="${pageContext.request.contextPath }/read" method="post" enctype="multipart/form-data">			  
+				                文件:<input type="file" name="uploadFile" /><br/><br/>
+				      <input type="submit" value="上传"/>			      	 
 					</form>
 			</div>
 			<div class="content-categories">
@@ -68,7 +69,9 @@
 				<%	 %>		
 				<% pageContext.setAttribute("ctp", request.getContextPath()); %>
 				
-	
+			<form action="${ctp}/OverWarite" method="post"> 
+			  <%-- <input type="hidden" name="listwzw" value="${listwzw}"/>  --%>
+		 
 					<table class="blue" align="" border=none>
 						<tr>
 							<td>Pid</td>
@@ -79,7 +82,7 @@
 							<td>pword</td>
 						</tr>	
 						<c:forEach items="${listwzw}" var="p">
-					 	 <tr>				 	
+					 	 <tr>					 	 	
 						 	<td>${p.pid}</td> 
 							<td>${p.name}</td>
 							<td>${p.type}</td>
@@ -88,8 +91,14 @@
 							<td>${p.pword}</td>						
 					 	 </tr>
 						</c:forEach>
-					</table> 	
-<!-- end -->
+					</table> 
+					
+				<!-- 						 
+				     <input id="bb" type="submit" 
+						  value="覆盖" 
+						 >	 -->
+				</form>
+<!-- end --><a>${uploadFilewzw}</a>
 			</div>
 		</div>
 		
