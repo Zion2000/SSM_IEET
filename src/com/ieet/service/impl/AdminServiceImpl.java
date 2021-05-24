@@ -1,5 +1,6 @@
 package com.ieet.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -25,22 +26,128 @@ public class AdminServiceImpl implements AdminService {
 			return list;
 	}
 
+	
+	@Override
+	public List<Personnel> getAllTeam() {
+		List<Personnel> list = adminDao.getAllTeams();		
+		return list;
+	}
+	
 	@Override
 	public int save(Personnel personnel) {
-		System.out.println("test1: "+personnel.getName()+personnel.getTeam()+personnel.getType()+personnel.getIdname()+personnel.getPword());
 		int insert = adminDao.insert(personnel);
-		System.out.println("test2: ");		
 			return insert;
-		
-		
-	
 	}
 
+	@Override
+	public Personnel getpersonbyid(int id) {		
+		 Personnel p = adminDao.getbyid(id);	
+		return p;
+	}
+
+	@Override
+	public void update(Personnel personnel) {
+		adminDao.update(personnel);		
+	}
+
+	@Override
+	public void delete(int id) {
+		adminDao.delete(id);		
+	}
+
+	@Override
+	public void deletemore(String pids) {
+		
+		adminDao.deletemore(pids);
+	}
+
+	@Override
+	public List<Personnel> selectbytype(String type) {
+		List<Personnel> list = adminDao.selectbyType(type);
+		return list;
+	}
+
+	@Override
+	public List<Personnel> selectbykeywords(Personnel keywords) {
+		List<Personnel> list = adminDao.selectbykeywords(keywords);	
+		
+		return list;
+	}
+
+	@Override
+	public List selectlotbyid(String pids) {
+		List<Personnel> list = adminDao.selectlotbyid(pids);
+		return list;
+	}
 	
+	@Override
+	public void MoreUpdate(List<Personnel> list) {
+		adminDao.moreUpdate(list);
+		
+	}
 
 
-	
-	
+	@Override
+	public List readExcel(List<Personnel> list) {
+		List<Personnel> list2 = adminDao.getAllpersons();		
+		List<Personnel> list_false = new ArrayList();
+		list_false.clear();
+			for (int i = 0; i < list.size(); i++) {			
+				System.out.println("list.get("+i+")-"+list.get(i));
+				
+				if (list.get(i).getName()==null || list.get(i).getIdname()==null || list.get(i).getPword()==null ) {
+					System.out.println("?");
+					list_false.add(list.get(i));
+					continue;
+				}
+				
+					for (int j = 0; j < list2.size(); j++) {			
+						System.out.println("list2.get("+j+")-"+list2.get(j));
+						if(list2.get(j).getIdname().equals(list.get(i).getIdname()))
+						{
+							System.out.println("ok");					
+							list_false.add(list.get(i));//idname重复失败的组									
+						}
+					}
+		}
+			
+			for (Personnel personnel : list_false) {
+			System.out.println("list_false: "+personnel);
+		}
+
+		if (list_false.isEmpty()) {
+		System.out.println("OK！id没有重复");
+			adminDao.insertlot(list);
+			return null;//
+		}else {
+			System.out.println("NO！id有重复");
+			return list_false;
+		}
+		
+	}
 
 
+	@Override
+	public List<Personnel> overwrite(String[] listwzw) {
+		System.out.println("listwzw-listwzw:"+listwzw);
+		adminDao.overwriteUpdate(listwzw);
+		return null;
+	}
 }
+
+
+
+
+
+	
+
+
+
+	
+
+
+	
+	
+
+
+
