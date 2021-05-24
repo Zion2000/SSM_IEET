@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="page-content">
-			<div class="header">Today
+			<div class="header">今日
 			<a href="${ctp}/exitadmin" style="position: absolute;left: 90%;">退出</a>
 			</div>
 			<div class="content-categories">
@@ -91,7 +91,7 @@
 							<option >${a.team}</option>
 						</c:forEach>
 					</select> 
-					<a href="${ctp}/updateMore/" id="updateMore">批量修改team</a>
+					<a href="${ctp}/updateMore/" id="updateMore">批量修改小组</a>
 				</span>	
 						&nbsp;&nbsp;&nbsp;
 					<span><a href="${ctp}/toaddperson?type=${map}&keyw=${keyw}">添加人员</a></span>&nbsp;&nbsp;&nbsp;	
@@ -111,14 +111,14 @@
 							<td>
 							<input type="checkbox" id="selectAll"/>
 							</td>
-							<td>Pid</td>
-							<td>name</td>
-							<td>type</td>
-							<td>team</td>
-							<td>idname</td>
-							<td>pasword</td>
-							<td>EDIT</td>
-							<td>DELETE</td>
+							<td>人员号</td>
+							<td>名字</td>
+							<td>类型</td>
+							<td>小组</td>
+							<td>账号</td>
+							<td>密码</td>
+							<td>编辑</td>
+							<td>删除</td>
 						</tr>	
 						<c:forEach items="${personlist}" var="p">
 					 	 <tr>
@@ -131,9 +131,9 @@
 							<td>${p.team}</td>
 							<td>${p.idname}</td>
 							<td>${p.pword}</td>
-							<td><a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}">edit</a></td>
+							<td><a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}">编辑</a></td>
 							<td>
-						  <a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}" class="deleteBtn">delete 
+						  <a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}" class="deleteBtn">删除 
 							
 							</td>
 					 	 </tr>
