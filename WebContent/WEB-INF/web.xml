@@ -87,7 +87,10 @@
 		<welcome-file>login.jsp</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> 81a8dc6082b9c236e3a6d6284f17e4cee67c403e
 
 </web-app>

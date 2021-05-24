@@ -37,7 +37,11 @@
 			</div>
 		</div>
 		<div class="page-content">
+<<<<<<< HEAD
 			<div class="header">Today</div>
+=======
+			<div class="header">今日</div>
+>>>>>>> 81a8dc6082b9c236e3a6d6284f17e4cee67c403e
 			<div class="content-categories">
 				
 				<div class="label-wrapper">
@@ -62,11 +66,19 @@
 		<input type="hidden" name="typesss" value="${typesss }"/>
 		<input type="hidden" name="keyw" value="${keyw }"/>
 			姓名：<form:input path="name"/><br/>		
+<<<<<<< HEAD
 			type：<br/>
 				教师  ：<form:radiobutton path="type" value="教师"/>&nbsp&nbsp
 				审核人员:<form:radiobutton path="type" value="审核人员"/><br/>
 				
 			team：<form:input path="team"/><br/>
+=======
+			类型：
+				教师  ：<form:radiobutton path="type" value="教师"/>&nbsp&nbsp
+				审核人员:<form:radiobutton path="type" value="审核人员"/><br/>
+				
+			小组：<form:input path="team"/><br/>
+>>>>>>> 81a8dc6082b9c236e3a6d6284f17e4cee67c403e
 			账号名：<form:input  path="idname"/><br/>
 			密码：<form:input path="pword"/><br/>
 			<input type="submit" value="保存" />

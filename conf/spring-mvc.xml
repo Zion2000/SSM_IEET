@@ -48,6 +48,10 @@
         <property name="resolveLazily" value="true"/>    
     </bean>
 	
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 81a8dc6082b9c236e3a6d6284f17e4cee67c403e
 
 </beans>

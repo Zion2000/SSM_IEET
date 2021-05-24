@@ -1,7 +1,10 @@
 package com.ieet.controller;
 
+<<<<<<< HEAD
 import java.util.List;
 
+=======
+>>>>>>> 81a8dc6082b9c236e3a6d6284f17e4cee67c403e
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -25,6 +28,10 @@ public class LoginController {
 	private LoginService loginService;
 	@Autowired
 	private UpLoadService uploadService;
+	
+	
+	
+	
 	
 	
 	
@@ -80,7 +87,11 @@ public class LoginController {
 			 if(person2!=null) {
 					session.setAttribute("Auditer", person2);
 					System.out.println("Auditer登陆成功");
+<<<<<<< HEAD
 					return "baseInfo";
+=======
+					return null;
+>>>>>>> 81a8dc6082b9c236e3a6d6284f17e4cee67c403e
 			 	}else {
 			 		model.addAttribute("msg","(错误账号或密码)");
 			 		System.out.println("Auditer登陆失败");
@@ -92,6 +103,7 @@ public class LoginController {
 			 if(person1!=null) {
 					session.setAttribute("Teacher", person1);
 					System.out.println("teacher登陆成功");
+<<<<<<< HEAD
 					//model.addAttribute("blabla",person1.getPid());
 					int pid = person1.getPid();
 					List<UpLoad> base = uploadService.FindBypid(pid);
@@ -100,6 +112,9 @@ public class LoginController {
 					model.addAttribute("pidds",pid);
 					
 					return "upload";
+=======
+					return null;
+>>>>>>> 81a8dc6082b9c236e3a6d6284f17e4cee67c403e
 		}else{
 			model.addAttribute("msg","(错误账号或密码)");
 			System.out.println("Teacher登陆失败");
