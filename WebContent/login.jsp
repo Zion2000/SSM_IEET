@@ -44,11 +44,8 @@
 							<label for="c" class="radio-inline">
 								<input type="radio" name="identity" id="c" value="3">管理员？？？？？？？？？？
 							</label>
-								
-						</div>
 
-
-
+				</div>
 						<div class="form-group">
 
 							<input class="submit" type="submit" id="btnSubmit" value="登录" onclick="login()">
