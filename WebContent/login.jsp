@@ -39,10 +39,10 @@
 								<input type="radio" name="identity"  id="a" value="1">教师改你尕爹
 							</label>
 							<label  for="b" class="radio-inline">
-								<input type="radio" name="identity" id="b" value="2">审核人员
+								<input type="radio" name="identity" id="b" value="2">审核人员5612919191596
 								</label>
 							<label for="c" class="radio-inline">
-								<input type="radio" name="identity" id="c" value="3">管理员
+								<input type="radio" name="identity" id="c" value="3">管理员搞你尕爹
 							</label>
 			
 						</div>
