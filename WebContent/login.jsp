@@ -36,7 +36,7 @@
 						<a>${Errorid}</a>
 						<div class="form-group">
 							<label for="a" class="radio-inline">
-								<input type="radio" name="identity"  id="a" value="1">教师
+								<input type="radio" name="identity"  id="a" value="1">教师芜湖起飞
 							</label>
 							<label  for="b" class="radio-inline">
 								<input type="radio" name="identity" id="b" value="2">审核人员
