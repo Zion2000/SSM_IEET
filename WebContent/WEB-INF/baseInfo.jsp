@@ -10,7 +10,7 @@
 			href="./css/adminindex.css" />
 		<script src="./js/jquery-3.1.1.min.js"></script>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>你懂不懂含金量啊</title>
+		<title>伤心的人没含金量</title>
 		<script type="text/javascript">
 			function doPost(to,p){//to:提交的action p是文件名参数
 				var myForm=document.createElement("form");
@@ -69,7 +69,7 @@
 					<li class="item"><img src="./icon/user.png" /> <span>Inbox</span>
 					</li>
 					<li class="item"><img src="./icon/user.png" /> <span>
-							Today</span></li>
+							审核消息</span></li>
 			
 					</li>
 				</ul>

@@ -3,19 +3,25 @@ package com.ieet.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ieet.pojo.Message;
 import com.ieet.pojo.Personnel;
 import com.ieet.service.MessageService;
+import com.mysql.cj.Session;
 
 
 @Controller
+@SessionAttributes("piddsss")
 public class MessageController {
 	@Autowired
 	MessageService messageService;
@@ -48,11 +54,18 @@ public class MessageController {
 	}
 	
 	@RequestMapping(value="/findpid", method=RequestMethod.GET)
-	public String findpid(int pid,Model model){
+	public String findpid(
+			int pid
+			,Model model,
+			@ModelAttribute("piddsss") Integer pidsss
+	
+			){	
+		System.out.println("???");
 		System.out.println(pid);
+		//从这里开始高耦合低内聚
 		List<Message> message = messageService.findpid(pid);
 		System.out.println(message);
-		model.addAttribute("messages",message);
+		model.addAttribute("messages", message);
 		//Message message=null;
 		//System.out.println(pid);
 		//List<Message> messages = new ArrayList<Message>();
@@ -67,6 +80,7 @@ public class MessageController {
 		return "pidmessage";
 	}
 
+	
 	@RequestMapping(value="personnelInfo")
 	public String a() {
 		return null;

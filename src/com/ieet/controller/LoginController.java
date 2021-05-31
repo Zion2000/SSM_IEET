@@ -40,6 +40,7 @@ public class LoginController {
 			String idname,
 			String pword
 			) {
+		session.setMaxInactiveInterval(1000*360);
 	System.out.println("identity "+identity);
 	System.out.println("idname "+idname);
 	System.out.println("pword "+pword);
@@ -91,6 +92,7 @@ public class LoginController {
 			 Personnel person1 = loginService.personnelLogin(personnel);
 			 if(person1!=null) {
 					session.setAttribute("Teacher", person1);
+					System.out.println("session:"+session);
 					System.out.println("teacher登陆成功");
 					//model.addAttribute("blabla",person1.getPid());
 					int pid = person1.getPid();
@@ -98,6 +100,8 @@ public class LoginController {
 					System.out.println(base);
 					model.addAttribute("bases",base);
 					model.addAttribute("pidds",pid);
+					session.setAttribute("piddsss", pid);
+					System.out.println("session1:"+session);
 					
 					return "upload";
 		}else{

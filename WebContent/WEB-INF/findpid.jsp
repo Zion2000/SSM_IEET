@@ -46,8 +46,34 @@
 			</div>		
 			<div>
 				<form action="findpid" method="get">
+				
+					<table align="center">
+				<tr>
+				<td>Mid</td>
+				<td>message</td>
+				<td>name</td>
+				<td>Pid</td>
+			</tr>
+			<c:forEach items="${messages}" var="s">
+				<tr>
+					<td>${s.mid }</td>
+					<td>${s.message }</td>
+					<td>${s.name }</td>
+					<td>${s.pid }</td>
+
+					
+					
+					
+				</tr>
+			</c:forEach>
+	</table>
+				
+				
+				<!--
+				${pageContext.request.contextPath}/
 				pid:<input type="text"  name="pid"  placeholder="输入pid搜索">
-				<input type="submit" value="查看消息">
+				<input type="submit" value="查看消息">  -->
+				
 				</form>
 			
 			</div>
