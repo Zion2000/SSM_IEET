@@ -47,11 +47,8 @@
         <!--resolveLazily属性启用是为了推迟文件解析，以便在UploadAction 中捕获文件大小异常--> 
         <property name="resolveLazily" value="true"/>    
     </bean>
-	
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> 81a8dc6082b9c236e3a6d6284f17e4cee67c403e
+	
+
 
 </beans>
