@@ -36,15 +36,15 @@
 						<a>${Errorid}</a>
 						<div class="form-group">
 							<label for="a" class="radio-inline">
-								<input type="radio" name="identity"  id="a" value="1">教师改你尕爹
+								<input type="radio" name="identity"  id="a" value="1">教师芜湖起飞 起飞你妈
 							</label>
 							<label  for="b" class="radio-inline">
-								<input type="radio" name="identity" id="b" value="2">审核人员5612919191596
+								<input type="radio" name="identity" id="b" value="2">审核人员。。。。。
 								</label>
 							<label for="c" class="radio-inline">
-								<input type="radio" name="identity" id="c" value="3">管理员搞你尕爹
+								<input type="radio" name="identity" id="c" value="3">管理员？？？？？？？？？？
 							</label>
-			
+								
 						</div>
 
 
