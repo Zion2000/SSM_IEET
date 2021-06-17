@@ -24,5 +24,6 @@ public interface MessageDao {
 
 		
 		@Select("Select * from Message where pid = #{pid} ")
+		@ResultType(Message.class)
 		public List<Message> findpid(int pid);
 }

@@ -53,19 +53,19 @@ public class MessageController {
 		
 	}
 	
-	@RequestMapping(value="/findpid", method=RequestMethod.GET)
-	public String findpid(
-			int pid
-			,Model model,
-			@ModelAttribute("piddsss") Integer pidsss
-	
-			){	
+	@RequestMapping(value="/findpid")
+	public String findpid(Model model, @ModelAttribute("piddsss") int pidsss){	
 		System.out.println("???");
-		System.out.println(pid);
+		System.out.println(pidsss);
 		//从这里开始高耦合低内聚
-		List<Message> message = messageService.findpid(pid);
-		System.out.println(message);
-		model.addAttribute("messages", message);
+		model.addAttribute("messages", messageService.findpid(pidsss));
+		
+		
+		
+		
+		//List<Message> message = messageService.findpid(pid);
+		//System.out.println(message);
+		//model.addAttribute("messages", message);
 		//Message message=null;
 		//System.out.println(pid);
 		//List<Message> messages = new ArrayList<Message>();
@@ -77,7 +77,7 @@ public class MessageController {
 		//}
 		//System.out.println(messages);
 		//model.addAttribute("messages",messages);
-		return "pidmessage";
+		return "findpid";//pidmessage
 	}
 
 	

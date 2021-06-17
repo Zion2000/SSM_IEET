@@ -68,7 +68,7 @@
 				<ul class="action-list">
 					<li class="item"><img src="./icon/user.png" /> <span>Inbox</span>
 					</li>
-					<li class="item"><img src="./icon/user.png" /> <span>
+					<li class="item"><img src="./icon/user.png" /><a href="${pageContext.request.contextPath}/messageAll">查看消息</a> <span>
 							审核消息</span></li>
 			
 					</li>

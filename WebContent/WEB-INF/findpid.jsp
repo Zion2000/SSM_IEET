@@ -34,19 +34,20 @@
 			<div class="header">教师查看消息界面</div>
 			<div class="content-categories">				
 				<div class="label-wrapper">
-					<input class="nav-item" name="nav" type="radio" id="opt-1">
-					<label class="category" for="opt-1"><a href="findpid.jsp">查看消息</a></label>
-				</div>		
-				<div class="label-wrapper">
-				<form action="FirstSql">
-					<input class="nav-item" name="nav" type="submit" id="opt-2" checked>
-					<label class="category" for="opt-2" > 待开发</label>
-					</form>			
-				</div>				
-			</div>		
-			<div>
-				<form action="findpid" method="get">
+				<!--  
+				 <input id="cc" type="radio" 
+						name="lifeType" value="0" 
+						onclick="location.href='findpid'" />查看消息
+				</div>
 				
+				<div class="label-wrapper">
+				 <input id="aa" type="radio" 
+						name="lifeType" value="1" 
+						onclick="location.href='daikaifa'" />尊尼获嘉-->
+				</div>
+	
+			</div>		
+			<div>		
 					<table align="center">
 				<tr>
 				<td>Mid</td>
@@ -67,14 +68,6 @@
 				</tr>
 			</c:forEach>
 	</table>
-				
-				
-				<!--
-				${pageContext.request.contextPath}/
-				pid:<input type="text"  name="pid"  placeholder="输入pid搜索">
-				<input type="submit" value="查看消息">  -->
-				
-				</form>
 			
 			</div>
 
