@@ -52,7 +52,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public void delete(int id) {
-		adminDao.delete(id);		
+		adminDao.delete(id);
 	}
 
 	@Override
@@ -132,6 +132,13 @@ public class AdminServiceImpl implements AdminService {
 		System.out.println("listwzw-listwzw:"+listwzw);
 		adminDao.overwriteUpdate(listwzw);
 		return null;
+	}
+
+
+	@Override
+	public List<Personnel> selectbyid(int pids) {
+		// TODO Auto-generated method stub
+		return adminDao.selectbyid(pids);
 	}
 }
 

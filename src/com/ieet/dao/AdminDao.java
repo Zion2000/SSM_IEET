@@ -34,12 +34,15 @@ public interface AdminDao {
 	public void update(Personnel personnel);
 
 	@Delete("delete from personnel where Pid=#{Pid}  ")
-	public void delete(int id);
+	public int delete(int id);
 	
 	
 	@Delete("delete from personnel where Pid in(${value}) ")
 	public void deletemore(String pids);
 
+	@Select("select * from personnel where Pid =#{Pid} ")
+	public List<Personnel> selectbyid(int pids);
+	
 	@Select("select * from personnel where Pid in(${value}) ")
 	public List<Personnel> selectlotbyid(String pids);
 	

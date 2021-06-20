@@ -82,4 +82,13 @@ public class Base {
 		this.pid = pid;
 	}
 
+	@Override
+	public String toString() {
+		return "Base [bid=" + bid + ", bstatus=" + bstatus + ", name=" + name + ", bdate=" + bdate + ", reason="
+				+ reason + ", lujing=" + lujing + ", pid=" + pid + "]";
+	}
+
+	
+	
+	
 }

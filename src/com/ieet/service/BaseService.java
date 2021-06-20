@@ -8,6 +8,9 @@ public interface BaseService {
 	
 	public List<Base> queryAll();
 	public List<Base> queryUnQuery();
+	public List<Base> querybyPid(int pid);
+	public List<Base> querybyMorePid(String pids);
+	
 	
 	public List<Base> queryPass();
 	public List<Base> queryFail();

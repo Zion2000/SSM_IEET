@@ -35,8 +35,10 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ieet.pojo.Base;
 import com.ieet.pojo.Personnel;
 import com.ieet.service.AdminService;
+import com.ieet.service.BaseService;
 import com.ieet.util.PageUtil;
 import com.ieet.util.PersonnelListener;
 import com.alibaba.excel.ExcelWriter;
@@ -51,6 +53,9 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 
+	@Autowired
+	BaseService baseService;
+	
 	private PageInfo<Personnel> pageInfo = new PageInfo<>(null, 5);
 
 	@RequestMapping(value = "/admin/{pageNum}")
@@ -180,9 +185,22 @@ public class AdminController {
 	public String deletePerson(Personnel personnel, @RequestParam(value = "type", required = false) String type,
 			@RequestParam(value = "keyw", required = false, defaultValue = "") String keyw, @PathVariable("id") int id,
 			Model model, Map<String, Object> map) throws Exception {
-
-		adminService.delete(id);
-
+		System.out.println("id:"+id);
+		
+		//判断外键
+		List<Base> baselist = baseService.querybyPid(id);
+		System.out.println("wzwtestbaselist:"+baselist.isEmpty());
+		if (baselist.isEmpty()) {
+			adminService.delete(id);
+		}else {
+			int base = baselist.get(0).getPid();
+			System.out.println(base);
+			List<Personnel> list = adminService.selectbyid(base);
+			String name = list.get(0).getName();
+			map.put("Errormsg", "["+name+"]  此账号有文件已导入，不能删除");
+		}
+		
+		
 		System.out.println("type:" + type);
 		if (type != null && type != "") {
 			String type2 = Type(type, map);
@@ -204,7 +222,9 @@ public class AdminController {
 			System.out.println("type-" + type);
 			map.put("typesss", type);
 		}
-
+		
+		
+		
 		return "forward:/admin/" + pageInfo.getPageNum();
 	}
 
@@ -215,7 +235,29 @@ public class AdminController {
 		List<Personnel> list;
 		System.out.println(check);
 		if (check != null) {
-			adminService.deletemore(check);
+			List<Base> querybyMorePid = baseService.querybyMorePid(check);
+			//System.out.println(querybyMorePid);		
+			if (querybyMorePid.isEmpty()) {
+				adminService.deletemore(check);
+			}else {
+				String str="";
+				for (Base base : querybyMorePid) {
+						
+					str+=base.getPid()+",";
+					}
+				
+				str=str.substring(0,str.length()-1);
+				System.out.println("str "+str);	
+				List<Personnel> list2 = adminService.selectlotbyid(str);
+				String msg="";
+				for (Personnel personnel : list2) {
+					msg+=personnel.getName()+",";
+				}
+				msg=msg.substring(0,msg.length()-1);
+				System.out.println("msg "+msg);	
+				map.put("Errormsg", "["+msg+"] 有文件已导入,不能删除");
+			}
+			
 		}
 
 		/*
@@ -445,7 +487,21 @@ public class AdminController {
 		EasyExcel.write(response.getOutputStream()).head(Personnel.class).sheet("Personnel信息").doWrite(list);
 
 	}
+	@RequestMapping(value = "/exportAllExcel")
+	public void exportallExcel(HttpServletResponse response,
+			@RequestParam(value = "type", required = false) String type,
+			@RequestParam(value = "keyw", required = false, defaultValue = "") String keyw,
+			Map map) throws IOException {
+		
 
+		String fileName = "Personnel信息表";
+        response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("utf-8");		
+		List<Personnel> list = adminService.getAllpersons();	
+		EasyExcel.write(response.getOutputStream()).head(Personnel.class).sheet("Personnel信息").doWrite(list);
+
+	}
 	@RequestMapping(value = "/exportExcelModel")
 	public void exportExcelModel(HttpServletResponse response) throws IOException {
 		// List<Personnel> list = adminService.getAllpersons();
@@ -473,7 +529,8 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/importExcelpage")
-	public String importExcelpage() {
+	public String importExcelpage(Map<String, Object> map) {
+		map.put("display", "none");
 		return "importExcel";
 	}
 
@@ -487,8 +544,6 @@ public class AdminController {
     		, Map<String, Object> map,
     		Model model
     		) {
-		
-	
 	        ExcelReader excelReader = null;
 	        try {
 	            excelReader = EasyExcel.read(uploadFile.getInputStream(), Personnel.class, personnelListener).build();
@@ -502,7 +557,7 @@ public class AdminController {
 	                // 这里千万别忘记关闭，读的时候会创建临时文件，到时磁盘会崩的
 	                excelReader.finish();
 	                try {
-						uploadFile.getInputStream().close();
+						uploadFile.getInputStream().close();	
 					} catch (IOException e) {						
 						e.printStackTrace();
 					}
@@ -521,11 +576,12 @@ public class AdminController {
 		 System.out.println(listwzw);	 
 		 if (listwzw!=null) {
 			 
-
+			 map.put("display", "block");
 			model.addAttribute("listwzw", listwzw);
-			map.put("uploadFilewzw", uploadFile); 
 			model.addAttribute("xxx", "有重复idname 或者  不符合条件的列‘如下’---导入失败，请修改"); 			 
 			 return "importExcel";
+		}else {
+			map.put("display", "none");
 		}
 		 
 		 	

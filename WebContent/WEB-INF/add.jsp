@@ -5,17 +5,17 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
-<link href="/WEB-INF/css/adminindex.css" rel="stylesheet" type="text/css"/>
  <% pageContext.setAttribute("ctp", request.getContextPath()); %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>管理员页面阿这</title>
 <script type="text/javascript" src="${ctp }/js/jquery-3.1.1.min.js">
 </script>
-
-<link href="${ctp }/css/adminindex.css" rel="stylesheet" type="text/css"/>
+ <link href="${ctp }/css/default.css"   rel="stylesheet" type="text/css"/>
 </head>
 <body>
+
+
 
 	
 	<div class="task-manager">
@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="page-content">
-			<div class="header">Today</div>
+			<div class="header"></div>
 			<div class="content-categories">
 				
 				<div class="label-wrapper">
@@ -46,30 +46,45 @@
 				</div>
 				
 			</div>
-					<
+					
 				
 				
 				<!-- 从这里开始插入代码！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！ -->
 		
 			
 	
-	<div class="" style="margin:0 auto">
+	<div class="page">
+	
+	    <div class="panel">
+	        <div class="panel_visible">
 		<% pageContext.setAttribute("ctp", request.getContextPath()); %>
+		<h1 class="panel_title"> 添加 </h1>
+		
 		<form:form action="${ctp}/addPost?type=${type}" method="post" modelAttribute="Personnel">
 		
-			姓名：<form:input path="name"/><br/>		
-			type：<br/>
-				教师  ：<form:radiobutton path="type" value="教师"/>&nbsp&nbsp
+			<label class="form_label" >姓名：</label>
+			<form:input path="name" class="form_input" id="username" name="username" /><br/>		
+			<label class="form_label" >职位：</label>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+				教师:<form:radiobutton path="type" value="教师"/>&nbsp &nbsp
 				审核人员:<form:radiobutton path="type" value="审核人员"/><br/>
 				
-			team：<form:input path="team"/><br/>
-			账号名：<form:input  path="idname"/><br/>
-			密码：<form:input path="pword"/><br/>
-			<input type="submit" value="添加" />
+			<label class="form_label" >队名：</label>
+			<form:input path="team" class="form_input"/><br/>
+			<label class="form_label" >账号名：</label>
+			<form:input  path="idname" class="form_input"/><br/>
+			<label class="form_label" >密码：</label>
+			<form:input path="pword" class="form_input"/><br/>
+			<input type="submit" value="添加" class="form_btn" />
 			
 		</form:form>
 			
-			</div>
+	</div>
+		 </div>	
+	</div>
+	   
+	
+			
+			
 		<!-- end -->
 			</div>
 		</div>

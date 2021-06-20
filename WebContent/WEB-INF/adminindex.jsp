@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<div class="page-content">
-			<div class="header">Today
+			<div class="header">
 			<a href="${ctp}/exitadmin" style="position: absolute;left: 90%;">退出</a>
 			</div>
 			<div class="content-categories">
@@ -71,7 +71,7 @@
 			 
 				<div class="serch-warp">
 					<form action="${ctp}/SearchAdmin" method="post">
-					<input class="inputt" placeholder="key worlds" value="${keywords }" name="keywords" id="" type="text" />
+					<input class="inputt" placeholder="关键字" value="${keywords }" name="keywords" id="" type="text" />
 					<input class="inputg" placeholder="" name="sub" value="查询" id="" type="submit" />
 					</form>
 					
@@ -91,13 +91,14 @@
 							<option >${a.team}</option>
 						</c:forEach>
 					</select> 
-					<a href="${ctp}/updateMore/" id="updateMore">批量修改team</a>
+					<a href="${ctp}/updateMore/" id="updateMore">批量修改队名</a>
 				</span>	
 						&nbsp;&nbsp;&nbsp;
 					<span><a href="${ctp}/toaddperson?type=${map}&keyw=${keyw}">添加人员</a></span>&nbsp;&nbsp;&nbsp;	
-					<span><a href="${ctp}/exportExcel?type=${map}&keyw=${keyw}" >导出为Excel</a></span>&nbsp;&nbsp;&nbsp;
-					<span><a href="${ctp}/exportExcelModel" >导出Excel模板</a></span>&nbsp;&nbsp;&nbsp;
+					<span><a href="${ctp}/exportAllExcel?type=${map}&keyw=${keyw}" >导出所有Excel</a></span>&nbsp;&nbsp;&nbsp;
+					<span><a href="${ctp}/exportExcel?type=${map}&keyw=${keyw}" >导出当前页面的Excel</a></span>&nbsp;&nbsp;&nbsp;
 					<span> <a href="${ctp}/importExcelpage" >导入Excel</a></span>
+				<span>	<a style="color: red;">${Errormsg}</a> </span>
 				</div>
 				
 					<div class="tasks-wrapper">
@@ -111,31 +112,26 @@
 							<td>
 							<input type="checkbox" id="selectAll"/>
 							</td>
-							<td>Pid</td>
-							<td>name</td>
-							<td>type</td>
-							<td>team</td>
-							<td>idname</td>
-							<td>pasword</td>
-							<td>EDIT</td>
-							<td>DELETE</td>
+							<td>编号</td>
+							<td>名字</td>
+							<td>职位</td>
+							<td>团队</td>
+							<td>账号名</td>
+							<td>编辑</td>
+							<td>删除</td>
 						</tr>	
 						<c:forEach items="${personlist}" var="p">
 					 	 <tr>
 					 	 <td>
-					 	 	<input type="checkbox" name="check" value="${p.pid }"/>
+					 	 	<input type="checkbox" name="check" value="${p.pid }" id="selectzz"/>
 					 	 </td>
 						 	<td>${p.pid}</td> 
 							<td>${p.name}</td>
 							<td>${p.type}</td>
 							<td>${p.team}</td>
-							<td>${p.idname}</td>
 							<td>${p.pword}</td>
-							<td><a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}">edit</a></td>
-							<td>
-						  <a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}" class="deleteBtn">delete 
-							
-							</td>
+							<td><a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}">编辑</a></td>
+							<td><a href="${ctp}/personEidt/${p.pid}?type=${map}&keyw=${keyw}" class="deleteBtn">删除 </a></td>
 					 	 </tr>
 						</c:forEach>
 					</table> 	 	
@@ -145,7 +141,7 @@
 				${page }	
 				
 				
-				<form id="deleteform" action="${ctp}/personEidt/ "  method="post" >
+				<form id="deleteform" action="${ctp}/personEidt/"  method="post" >
 									<input type="hidden" name="_method" value="delete"/>									
 				</form>	
 			<%-- 	<form id="updateMoreform" action=""  method="post" >
@@ -157,9 +153,12 @@
 				//alert("test");
 				 $(function(){
 					$(".deleteBtn").click(function(){
-						console.log("?");
+						var empName = $(this).parents("tr").find("td:eq(2)").text();
+						if(confirm("确认删除[" + empName + "]吗?")) {
 						$("#deleteform").attr("action",$(this).attr("href"));
 						$("#deleteform").submit();
+						
+						}
 						return false;
 						});
 					});  
@@ -172,10 +171,23 @@
 					});
 				 $(function(){
 						$("#deleteMore").click(function(){
-							$('#deleteMore').attr('href','${ctp}/deleteMore/?type=${map}&keyw=${keyw}'); 
-							$("#moreoptionform").attr("action",$(this).attr("href")).submit();							
+							 var empNames = "";
 							
+								  $.each($("#selectzz:checked"), function() {
+							      empNames += $(this).parents("tr").find("td:eq(2)").text() + ",";
+							     }); 
+							     
+						          empNames = empNames.substring(0, empNames.length - 1);		
+								
+						          				        										
+							if(confirm("确认删除["  + empNames  + "]吗?")) {
+								$('#deleteMore').attr('href','${ctp}/deleteMore/?type=${map}&keyw=${keyw}'); 
+								$("#moreoptionform").attr("action",$(this).attr("href")).submit();			
+												
+							 } 
+							 
 							return false;
+							
 							});
 						}); 
 						
@@ -186,12 +198,16 @@
 								//$('input[type=checkbox]').prop('checked')
 								
 								var value =$("#aaa option:selected").text();  						
-										$('#updateMore').attr('href','${ctp}/updateMore/'+value.toString()+'?type=${map}&keyw=${keyw}'); 
+								$('#updateMore').attr('href','${ctp}/updateMore/'+value.toString()+'?type=${map}&keyw=${keyw}'); 
 								$("#moreoptionform").attr("action",$(this).attr("href")).submit();
 								return false;
 								});
 							});
+
 					
+						
+
+						
 				</script>
 			
 				<!-- end -->

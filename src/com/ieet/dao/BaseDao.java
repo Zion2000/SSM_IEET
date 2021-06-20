@@ -20,6 +20,17 @@ public interface BaseDao {
 	@ResultType(Base.class)
 	public List<Base> selectUnQuery();
 	
+	//通过pid查找
+		@Select("Select * from Base where Pid = #{Pid}")
+		@ResultType(Base.class)
+		public List<Base> selectBaseBypid(int pid);
+		
+		@Select("Select * from base where Pid in(${value})")
+		@ResultType(Base.class)
+		public List<Base> selectBaseByMorepid(String pids);
+		
+		
+	
 	//审核成功后，查询成功的列表
 	@Select("Select * from Base where Bstatus=1")
 	@ResultType(Base.class)
