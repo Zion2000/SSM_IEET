@@ -15,12 +15,9 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
-
-
 	<!-- 引入数据库连接properties文件 -->
 	<context:property-placeholder
 		location="classpath:Jdbc.properties" />
-
 
 	<!-- 注册数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
