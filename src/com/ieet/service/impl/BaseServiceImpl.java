@@ -50,20 +50,4 @@ public class BaseServiceImpl implements BaseService{
 	public List<Base> queryFail() {
 		return baseDao.selectFail();
 	}
-
-	@Override
-	public List<Base> querybyPid(int pid) {
-		// TODO Auto-generated method stub
-		return baseDao.selectBaseBypid(pid);
-	}
-
-	@Override
-	public List<Base> querybyMorePid(String pids) {
-		// TODO Auto-generated method stub
-		return baseDao.selectBaseByMorepid(pids);
-	}
-	
-	
-
-
 }

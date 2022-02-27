@@ -29,8 +29,6 @@ public interface AdminService {
 	public List<Personnel> selectbykeywords(Personnel keywords);
 
 	public List selectlotbyid(String pids);
-	
-	public List<Personnel> selectbyid(int pids);
 
 	public void MoreUpdate(List<Personnel> ls);
 
